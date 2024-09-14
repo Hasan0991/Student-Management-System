@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="460.0" prefWidth="415.0" style="-fx-background-color: c510d4;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.SignUpController">
+   <children>
+      <AnchorPane layoutX="-30.0" prefHeight="458.0" prefWidth="173.0" style="-fx-background-color: ff1ab6;">
+         <children>
+            <Label layoutX="42.0" layoutY="338.0" prefHeight="76.0" prefWidth="160.0" text="JAVA FX">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="81.0" prefHeight="36.0" prefWidth="160.0" text="Create new" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="68.0" layoutY="117.0" text="Account">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="26.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="144.0" fitWidth="171.0" layoutX="50.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../vecteezy_transparent-background-person-icon_33882148.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Label layoutX="202.0" layoutY="74.0" prefHeight="36.0" prefWidth="253.0" text="Please enter your Username" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="202.0" layoutY="146.0" prefHeight="36.0" prefWidth="208.0" text="Please enter Email" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="202.0" layoutY="211.0" prefHeight="36.0" prefWidth="208.0" text="Please enter password" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="202.0" layoutY="280.0" prefHeight="36.0" prefWidth="208.0" text="Please enter password" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_username_reg" layoutX="202.0" layoutY="110.0" prefHeight="36.0" prefWidth="239.0" promptText="Username">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttong_sign_up_reg" layoutX="242.0" layoutY="368.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" style="-fx-background-color: ff2ecc;" text="Sign Up">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tf_email_reg" layoutX="202.0" layoutY="182.0" prefHeight="36.0" prefWidth="239.0" promptText="Email">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf_password_reg_1" layoutX="202.0" layoutY="247.0" prefHeight="36.0" prefWidth="239.0" promptText="Password">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tf_password_reg2" layoutX="202.0" layoutY="316.0" prefHeight="36.0" prefWidth="239.0" promptText="Password">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </TextField>
+      <Label layoutX="191.0" layoutY="415.0" prefHeight="27.0" prefWidth="154.0" text="Already a member?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_loginpage_reg" layoutX="322.0" layoutY="415.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Log In!" textFill="#0009ff" underline="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="125.0" fitWidth="133.0" layoutX="-162.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
