@@ -59,7 +59,7 @@
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
       </TextField>
-      <Button fx:id="buttong_sign_up_reg" layoutX="242.0" layoutY="368.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" style="-fx-background-color: ff2ecc;" text="Sign Up">
+      <Button fx:id="button_sign_up_reg" layoutX="242.0" layoutY="368.0" mnemonicParsing="false" onAction="#signUp" prefHeight="27.0" prefWidth="160.0" style="-fx-background-color: ff2ecc;" text="Sign Up">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
       </TextField>
-      <TextField fx:id="tf_password_reg2" layoutX="202.0" layoutY="316.0" prefHeight="36.0" prefWidth="239.0" promptText="Password">
+      <TextField fx:id="tf_password_reg_2" layoutX="202.0" layoutY="316.0" prefHeight="36.0" prefWidth="239.0" promptText="Password">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
