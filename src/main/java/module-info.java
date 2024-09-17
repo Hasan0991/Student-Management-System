@@ -4,6 +4,7 @@ module com.example.fx {
 
     requires com.dlsc.formsfx;
     requires java.sql;
+    requires jbcrypt;
 
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
