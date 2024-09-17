@@ -109,5 +109,56 @@ public class DBUtils {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    public void SignInUser(ActionEvent event, String email, String password) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+            preparedStatement = connection.prepareStatement("select password from user_table where email=?");
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
 
-}
+            if (!resultSet.next()) {
+                showAlert(Alert.AlertType.ERROR, "Error", "Email not found in Database");
+            } else {
+                String storedPassword = resultSet.getString("password");
+                if (storedPassword.equals(password)) {
+                    showAlert(Alert.AlertType.INFORMATION, "Congratulations", "Everything is okay");
+                    changeScene(event, "sign-up.fxml", email);
+
+                    // Example scene change
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Provided credentials are incorrect");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (resultSet != null) {
+                try{
+                    resultSet.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try{
+                    preparedStatement.close();
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try{
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(); ;
+                }
+            }
+        }
+        }
+    }
