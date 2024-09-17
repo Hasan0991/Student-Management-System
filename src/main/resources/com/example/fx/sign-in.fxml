@@ -57,7 +57,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="button_login" layoutX="81.0" layoutY="281.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="224.0" style="-fx-background-color: dd00a7;" text="Login">
+            <Button fx:id="button_login" layoutX="81.0" layoutY="281.0" mnemonicParsing="false" onAction="#Result" prefHeight="44.0" prefWidth="224.0" style="-fx-background-color: dd00a7;" text="Login">
                <font>
                   <Font name="Arial Rounded MT Bold" size="24.0" />
                </font>
