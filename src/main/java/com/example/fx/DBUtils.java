@@ -1,5 +1,6 @@
 package com.example.fx;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -41,7 +42,7 @@ public class DBUtils {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void SignUpUser(ActionEvent event,String username,String password,String email) {
+    public void SignUpUser(ActionEvent event,Student student) {
         Connection connection=null;
         PreparedStatement psInsert=null;
         PreparedStatement psCheckUserExists=null;
@@ -50,17 +51,18 @@ public class DBUtils {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             psCheckUserExists = connection.prepareStatement("select * from user_table where email=? ");
-            psCheckUserExists.setString(1,email);
+            psCheckUserExists.setString(1,student.getEmail());
             resultSet=psCheckUserExists.executeQuery();
             if (resultSet.isBeforeFirst()){
                 System.out.println("Username already exists");
                 showAlert(Alert.AlertType.ERROR, "Error", "Email already exists.");
             }
             else{
+
                 psInsert= connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
-                psInsert.setString(1,username);
-                psInsert.setString(2,password);
-                psInsert.setString(3,email);
+                psInsert.setString(1,student.getName());
+                psInsert.setString(2,student.getPassword());
+                psInsert.setString(3,student.getEmail());
                 psInsert.executeUpdate();
                 showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
             }

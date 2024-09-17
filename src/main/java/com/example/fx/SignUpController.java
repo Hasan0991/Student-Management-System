@@ -32,6 +32,7 @@ public class SignUpController {
             DBUtils.changeScene(event, "sign-in.fxml", null);
         });
     }
+
     @FXML
     public void signUp(ActionEvent event) {
         String username = tf_username_reg.getText();
@@ -39,7 +40,7 @@ public class SignUpController {
         String password1 = tf_password_reg_2.getText();
         String email = tf_email_reg.getText();
 
-
+        // Validate the input
         if (username.isEmpty() || password.isEmpty() || email.isEmpty() || password1.isEmpty()) {
             DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "All fields must be filled out");
             return;
@@ -50,14 +51,15 @@ public class SignUpController {
             return;
         }
 
-
         if (!password.equals(password1)) {
             DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match");
             return;
         }
 
-        DBUtils dbUtils = new DBUtils();
-        dbUtils.SignUpUser(event, username, password, email);
-    }
+        Student newStudent = new Student(0, username, email, password);
 
+
+        DBUtils dbUtils = new DBUtils();
+        dbUtils.SignUpUser(event, newStudent);
+    }
 }
