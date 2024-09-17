@@ -59,12 +59,16 @@ public class DBUtils {
             }
             else{
 
-                psInsert= connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
-                psInsert.setString(1,student.getName());
-                psInsert.setString(2,student.getPassword());
-                psInsert.setString(3,student.getEmail());
-                psInsert.executeUpdate();
-                showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
+                String hashedPassword = Encryptor.encryptString(student.getPassword());
+
+                if (Encryptor.checkPassword(student.getPassword(), hashedPassword)) {
+                    psInsert= connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
+                    psInsert.setString(1,student.getName());
+                    psInsert.setString(2,hashedPassword);
+                    psInsert.setString(3,student.getEmail());
+                    psInsert.executeUpdate();
+                    showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
+                }
             }
         }
         catch (SQLException e){
@@ -116,6 +120,9 @@ public class DBUtils {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
+
+            String hashedPassword = Encryptor.encryptString(password);
+
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             preparedStatement = connection.prepareStatement("select password from user_table where email=?");
             preparedStatement.setString(1, email);
@@ -125,11 +132,13 @@ public class DBUtils {
                 showAlert(Alert.AlertType.ERROR, "Error", "Email not found in Database");
             } else {
                 String storedPassword = resultSet.getString("password");
-                if (storedPassword.equals(password)) {
+                System.out.println("Entered Password: " + password);
+                System.out.println("Stored Password: " + storedPassword);
+                boolean isPasswordCorrect = Encryptor.checkPassword(password, storedPassword);
+                if (isPasswordCorrect) {
                     showAlert(Alert.AlertType.INFORMATION, "Congratulations", "Everything is okay");
                     changeScene(event, "sign-up.fxml", email);
 
-                    // Example scene change
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Error", "Provided credentials are incorrect");
                 }
@@ -162,5 +171,5 @@ public class DBUtils {
                 }
             }
         }
-        }
     }
+}
