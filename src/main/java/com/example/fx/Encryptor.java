@@ -4,19 +4,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class Encryptor {
     public static String encryptString(String input) {
-
-<<<<<<< HEAD
         return BCrypt.hashpw(input, BCrypt.gensalt());
-=======
-        
-        MessageDigest md = MessageDigest.getInstance("MD5");
 
-        byte[] messageDigest = md.digest(input.getBytes());
-
-        BigInteger bigInt = new BigInteger(1,messageDigest);
-
-        return bigInt.toString(16);
->>>>>>> 143e7989afd218d837d4731e352b622f53bcf481
     }
 
     public static boolean checkPassword(String plainPassword, String hashedPassword) {
