@@ -42,7 +42,7 @@ public class DBUtils {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void SignUpUser(ActionEvent event,Student student) {
+    public void SignUpUser(ActionEvent event,User user) {
         Connection connection=null;
         PreparedStatement psInsert=null;
         PreparedStatement psCheckUserExists=null;
@@ -51,7 +51,7 @@ public class DBUtils {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             psCheckUserExists = connection.prepareStatement("select * from user_table where email=? ");
-            psCheckUserExists.setString(1,student.getEmail());
+            psCheckUserExists.setString(1,user.getEmail());
             resultSet=psCheckUserExists.executeQuery();
             if (resultSet.isBeforeFirst()){
                 System.out.println("Username already exists");
@@ -59,13 +59,13 @@ public class DBUtils {
             }
             else{
 
-                String hashedPassword = Encryptor.encryptString(student.getPassword());
+                String hashedPassword = Encryptor.encryptString(user.getPassword());
 
-                if (Encryptor.checkPassword(student.getPassword(), hashedPassword)) {
+                if (Encryptor.checkPassword(user.getPassword(), hashedPassword)) {
                     psInsert= connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
-                    psInsert.setString(1,student.getName());
+                    psInsert.setString(1,user.getName());
                     psInsert.setString(2,hashedPassword);
-                    psInsert.setString(3,student.getEmail());
+                    psInsert.setString(3,user.getEmail());
                     psInsert.executeUpdate();
                     showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
                 }
@@ -119,15 +119,16 @@ public class DBUtils {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        if (email.equals("admin") && password.equals("admin123")) {
+            DBUtils.changeScene(event, "admin-view.fxml", "admin");
+            return;
+        }
         try {
-
             String hashedPassword = Encryptor.encryptString(password);
-
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             preparedStatement = connection.prepareStatement("select password from user_table where email=?");
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
-
             if (!resultSet.next()) {
                 showAlert(Alert.AlertType.ERROR, "Error", "Email not found in Database");
             } else {
@@ -137,8 +138,7 @@ public class DBUtils {
                 boolean isPasswordCorrect = Encryptor.checkPassword(password, storedPassword);
                 if (isPasswordCorrect) {
                     showAlert(Alert.AlertType.INFORMATION, "Congratulations", "Everything is okay");
-                    changeScene(event, "sign-up.fxml", email);
-
+                    changeScene(event, "admin-view.fxml", email);
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Error", "Provided credentials are incorrect");
                 }

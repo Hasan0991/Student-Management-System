@@ -56,10 +56,10 @@ public class SignUpController {
             return;
         }
 
-        Student newStudent = new Student(0, username, email, password);
+        User new_user = new User(0, username, email, password);
 
 
         DBUtils dbUtils = new DBUtils();
-        dbUtils.SignUpUser(event, newStudent);
+        dbUtils.SignUpUser(event, new_user);
     }
 }

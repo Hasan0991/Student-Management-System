@@ -27,6 +27,7 @@ public class LoggedInController {
     public void Result(ActionEvent event){
         String email = tf_email.getText();
         String password = tf_password.getText();
+
         if(email.isEmpty() || password.isEmpty()){
             DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "All fields must be filled out");
             return;
