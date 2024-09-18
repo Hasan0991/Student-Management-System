@@ -1,12 +1,12 @@
 package com.example.fx;
 
-public class Student {
+public class User {
     private int id;
     private String username;
     private String password;
     private String email;
 
-    public Student(int id, String username, String email, String password) {
+    public User(int id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
