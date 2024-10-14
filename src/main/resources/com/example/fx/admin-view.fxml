@@ -18,32 +18,32 @@
                   <Font name="Arial Rounded MT Bold" size="21.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="6.0" layoutY="219.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD TEACHER" textFill="WHITE">
+            <Button fx:id="btn_add_teacher" alignment="CENTER" layoutX="6.0" layoutY="219.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD TEACHER" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="6.0" layoutY="277.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD STUDENT" textFill="WHITE">
+            <Button fx:id="btn_add_student" alignment="CENTER" layoutX="6.0" layoutY="277.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD STUDENT" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="7.0" layoutY="338.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD COURSE" textFill="WHITE">
+            <Button fx:id="btn_add_course" alignment="CENTER" layoutX="7.0" layoutY="338.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD COURSE" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="7.0" layoutY="397.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD SUBJECT" textFill="WHITE">
+            <Button fx:id="btn_add_subject" alignment="CENTER" layoutX="7.0" layoutY="397.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD SUBJECT" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="6.0" layoutY="454.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="DASHBOARD" textFill="WHITE">
+            <Button fx:id="btn_add_dashboard" alignment="CENTER" layoutX="6.0" layoutY="454.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="DASHBOARD" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="7.0" layoutY="513.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="SALARY " textFill="WHITE">
+            <Button fx:id="btn_add_salalry" alignment="CENTER" layoutX="7.0" layoutY="513.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="SALARY " textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
@@ -55,19 +55,19 @@
          <children>
             <TableView layoutX="2.0" prefHeight="468.0" prefWidth="709.0">
               <columns>
-                <TableColumn prefWidth="133.6000213623047" text="Student Number" />
-                  <TableColumn prefWidth="52.0" text="Name" />
-                  <TableColumn prefWidth="72.0" text="Surname " />
-                  <TableColumn prefWidth="76.7999267578125" text="Gender" />
-                  <TableColumn prefWidth="89.5999755859375" text="Date of Birth" />
-                  <TableColumn prefWidth="89.5999755859375" text="Course" />
-                  <TableColumn prefWidth="76.7999267578125" text="Country" />
-                  <TableColumn prefWidth="76.7999267578125" text="Status" />
+                <TableColumn fx:id="admin_student_number" prefWidth="133.6000213623047" text="Student Number" />
+                  <TableColumn fx:id="admin_student_name" prefWidth="52.0" text="Name" />
+                  <TableColumn fx:id="admin_student_surname" prefWidth="72.0" text="Surname " />
+                  <TableColumn fx:id="admin_student_gender" prefWidth="76.7999267578125" text="Gender" />
+                  <TableColumn fx:id="admin_student_date" prefWidth="89.5999755859375" text="Date of Birth" />
+                  <TableColumn fx:id="admin_student_course" prefWidth="89.5999755859375" text="Course" />
+                  <TableColumn fx:id="admin_student_country" prefWidth="76.7999267578125" text="Country" />
+                  <TableColumn fx:id="admin_student_status" prefWidth="76.7999267578125" text="Status" />
               </columns>
             </TableView>
-            <Button layoutX="469.0" layoutY="469.0" mnemonicParsing="false" text="ADD" />
-            <Button layoutX="549.0" layoutY="469.0" mnemonicParsing="false" text="UUPDATE" />
-            <Button layoutX="649.0" layoutY="469.0" mnemonicParsing="false" text="DELETE" />
+            <Button fx:id="btn_add" layoutX="469.0" layoutY="469.0" mnemonicParsing="false" text="ADD" />
+            <Button fx:id="btn_update" layoutX="549.0" layoutY="469.0" mnemonicParsing="false" text="UUPDATE" />
+            <Button fx:id="btn_delete" layoutX="649.0" layoutY="469.0" mnemonicParsing="false" text="DELETE" />
          </children>
       </AnchorPane>
    </children>
