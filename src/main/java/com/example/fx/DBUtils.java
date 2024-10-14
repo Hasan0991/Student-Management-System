@@ -1,6 +1,8 @@
 package com.example.fx;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,8 +47,8 @@ public class DBUtils {
     public void SignUpUser(ActionEvent event,User user) {
         Connection connection=null;
         PreparedStatement psInsert=null;
-        PreparedStatement psCheckUserExists=null;
         ResultSet resultSet=null;
+        PreparedStatement psCheckUserExists=null;
 
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
@@ -171,5 +173,33 @@ public class DBUtils {
                 }
             }
         }
+    }
+    public ObservableList<StudentData> getStudents() {
+        ObservableList<StudentData> students = FXCollections.observableArrayList();
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+            Statement stmt = conn.createStatement();
+            String query = "SELECT student_id,name,surname, gender,dateOfBirth,country, course, status FROM students";
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                students.add(new StudentData(
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("country"),
+                        rs.getString("course"),
+                        rs.getString("date"),
+                        rs.getString("gender"),
+                        rs.getString("status")
+                ));
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return students;
     }
 }
