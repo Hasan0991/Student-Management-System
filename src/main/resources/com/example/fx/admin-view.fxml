@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.AdminView">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="207.0" style="-fx-background-color: green;">
@@ -51,23 +50,24 @@
             <Line endX="88.39999389648438" endY="-1.52587890625E-5" layoutX="102.0" layoutY="146.0" startX="-87.5999984741211" startY="-1.52587890625E-5" stroke="#c71818" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="215.0" layoutY="91.0" prefHeight="508.0" prefWidth="714.0">
+      <AnchorPane layoutX="215.0" layoutY="91.0" prefHeight="508.0" prefWidth="819.0">
          <children>
-            <TableView layoutX="2.0" prefHeight="468.0" prefWidth="709.0">
+            <TableView fx:id="adminTableView" layoutX="2.0" prefHeight="468.0" prefWidth="819.0">
               <columns>
-                <TableColumn fx:id="admin_student_number" prefWidth="133.6000213623047" text="Student Number" />
-                  <TableColumn fx:id="admin_student_name" prefWidth="52.0" text="Name" />
-                  <TableColumn fx:id="admin_student_surname" prefWidth="72.0" text="Surname " />
-                  <TableColumn fx:id="admin_student_gender" prefWidth="76.7999267578125" text="Gender" />
-                  <TableColumn fx:id="admin_student_date" prefWidth="89.5999755859375" text="Date of Birth" />
-                  <TableColumn fx:id="admin_student_course" prefWidth="89.5999755859375" text="Course" />
-                  <TableColumn fx:id="admin_student_country" prefWidth="76.7999267578125" text="Country" />
-                  <TableColumn fx:id="admin_student_status" prefWidth="76.7999267578125" text="Status" />
+                  <TableColumn fx:id="admin_student_number" prefWidth="60.0" text="number" />
+                  <TableColumn fx:id="admin_student_name" prefWidth="92.0" text="Name" />
+                  <TableColumn fx:id="admin_student_surname" prefWidth="77.0" text="Surname " />
+                  <TableColumn fx:id="admin_student_gender" prefWidth="92.0" text="Gender" />
+                  <TableColumn fx:id="admin_student_date" prefWidth="118.0" text="Date of Birth" />
+                  <TableColumn fx:id="admin_student_course" prefWidth="116.0" text="Course" />
+                  <TableColumn fx:id="admin_student_country" prefWidth="92.0" text="Country" />
+                  <TableColumn fx:id="admin_student_status" prefWidth="77.0" text="Status" />
+                  <TableColumn fx:id="admin_student_id" prefWidth="94.0" text="student_id" />
               </columns>
             </TableView>
-            <Button fx:id="btn_add" layoutX="469.0" layoutY="469.0" mnemonicParsing="false" text="ADD" />
-            <Button fx:id="btn_update" layoutX="549.0" layoutY="469.0" mnemonicParsing="false" text="UUPDATE" />
-            <Button fx:id="btn_delete" layoutX="649.0" layoutY="469.0" mnemonicParsing="false" text="DELETE" />
+            <Button fx:id="btn_add" layoutX="545.0" layoutY="469.0" mnemonicParsing="false" text="ADD" />
+            <Button fx:id="btn_update" layoutX="608.0" layoutY="469.0" mnemonicParsing="false" text="UPDATE" />
+            <Button fx:id="btn_delete" layoutX="714.0" layoutY="469.0" mnemonicParsing="false" text="DELETE" />
          </children>
       </AnchorPane>
    </children>
