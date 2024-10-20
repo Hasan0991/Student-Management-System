@@ -75,10 +75,30 @@ public class AdminView {
 
         loadStudentDataFromDatabase();
         adminTableView.setItems(studentData);
+        btn_delete.setOnAction(e -> deleteStudentFromDatabase());
     }
 
     private void loadStudentDataFromDatabase() {
         DBUtils dbUtils = new DBUtils();
         studentData.setAll(dbUtils.getStudents());
+    }
+    private void deleteStudentFromDatabase() {
+        StudentData selectedStudent = adminTableView.getSelectionModel().getSelectedItem();
+        if (selectedStudent!=null){
+            int  studentId = selectedStudent.getStudentId();
+            DBUtils dbUtils = new DBUtils();
+
+            boolean answer = dbUtils.deleteSelectedStudent(studentId);
+            if (answer) {
+                studentData.remove(selectedStudent);
+            }
+            else{
+                System.out.println("Failed to delete student");
+            }
+        }
+        else{
+            System.out.println("No student selected");
+        }
+
     }
 }
