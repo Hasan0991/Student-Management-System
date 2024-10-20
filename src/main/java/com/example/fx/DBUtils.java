@@ -204,4 +204,17 @@ public class DBUtils {
 
         return students;
     }
+    public Boolean deleteSelectedStudent(int student_id) {
+        String query ="DELETE FROM student where student_id = ?";
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+             PreparedStatement preparedStatement = conn.prepareStatement(query)){
+            preparedStatement.setInt(1,student_id);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }
