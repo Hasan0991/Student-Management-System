@@ -11,13 +11,11 @@ public class StudentData {
     private String course;
     private String country;
     private String status;
+    private int number;
 
-    // Default constructor
-    public StudentData(String name, String surname, String country, String course, String date, String gender, String status) {
-    }
 
-    // Parameterized constructor
-    public StudentData( String name, String surname, String gender, Date dateOfBirth, String course, String country, String status) {
+    public StudentData(int number,String name, String surname, String gender, Date dateOfBirth, String course, String country, String status,int studentId) {
+        this.number = number;
         this.name = name;
         this.surname = surname;
         this.gender = gender;
@@ -25,6 +23,21 @@ public class StudentData {
         this.course = course;
         this.country = country;
         this.status = status;
+        this.studentId = studentId;
+    }
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int id) {
+        this.studentId = id;
     }
 
     public String getName() {
