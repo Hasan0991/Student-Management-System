@@ -24,10 +24,14 @@ public class AdminView {
     private TableColumn<StudentData, String> admin_student_date;
     @FXML
     private TableColumn<StudentData, String> admin_student_gender;
+
     @FXML
     private TableColumn<StudentData, String> admin_student_number;
+
     @FXML
     private TableColumn<StudentData, String> admin_student_status;
+    @FXML
+    private TableColumn<StudentData, String> admin_student_id;
 
     @FXML
     private Button btn_add;
@@ -59,14 +63,15 @@ public class AdminView {
     private ObservableList<StudentData> studentData = FXCollections.observableArrayList();
     @FXML
     private void initialize() {
+        admin_student_number.setCellValueFactory(new PropertyValueFactory<>("number"));
         admin_student_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         admin_student_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        admin_student_country.setCellValueFactory(new PropertyValueFactory<>("country"));
-        admin_student_course.setCellValueFactory(new PropertyValueFactory<>("course"));
-        admin_student_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         admin_student_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        admin_student_number.setCellValueFactory(new PropertyValueFactory<>("number"));
+        admin_student_date.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        admin_student_course.setCellValueFactory(new PropertyValueFactory<>("course"));
+        admin_student_country.setCellValueFactory(new PropertyValueFactory<>("country"));
         admin_student_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        admin_student_id.setCellValueFactory(new PropertyValueFactory<>("studentId"));
 
         loadStudentDataFromDatabase();
         adminTableView.setItems(studentData);

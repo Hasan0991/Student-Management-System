@@ -180,18 +180,20 @@ public class DBUtils {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             Statement stmt = conn.createStatement();
-            String query = "SELECT student_id,name,surname, gender,dateOfBirth,country, course, status FROM students";
+            String query = "SELECT number,name,surname, gender,dateOfBirth,country, course, status,student_id FROM student";
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
                 students.add(new StudentData(
+                        rs.getInt("number"),
                         rs.getString("name"),
                         rs.getString("surname"),
-                        rs.getString("country"),
-                        rs.getString("course"),
-                        rs.getString("date"),
                         rs.getString("gender"),
-                        rs.getString("status")
+                        rs.getDate("dateOfBirth"),
+                        rs.getString("course"),
+                        rs.getString("country"),
+                        rs.getString("status"),
+                        rs.getInt("student_id")
                 ));
             }
 
