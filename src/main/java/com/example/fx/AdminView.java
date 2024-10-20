@@ -3,10 +3,10 @@ package com.example.fx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.Optional;
 
 public class AdminView {
     @FXML
@@ -82,23 +82,36 @@ public class AdminView {
         DBUtils dbUtils = new DBUtils();
         studentData.setAll(dbUtils.getStudents());
     }
+
     private void deleteStudentFromDatabase() {
+
         StudentData selectedStudent = adminTableView.getSelectionModel().getSelectedItem();
-        if (selectedStudent!=null){
-            int  studentId = selectedStudent.getStudentId();
-            DBUtils dbUtils = new DBUtils();
 
-            boolean answer = dbUtils.deleteSelectedStudent(studentId);
-            if (answer) {
-                studentData.remove(selectedStudent);
-            }
-            else{
-                System.out.println("Failed to delete student");
-            }
-        }
-        else{
-            System.out.println("No student selected");
-        }
+        if (selectedStudent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Are you sure you want to delete this student?");
+            alert.setContentText("This action cannot be undone.");
 
+            Optional<ButtonType> result = alert.showAndWait();
+
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                int studentId = selectedStudent.getStudentId();
+                DBUtils dbUtils = new DBUtils();
+                boolean answer = dbUtils.deleteSelectedStudent(studentId);
+                if (answer) {
+                    studentData.remove(selectedStudent);
+                    System.out.println("Student deleted successfully.");
+                } else {
+                    System.out.println("Failed to delete student.");
+                }
+            } else {
+
+                System.out.println("Deletion canceled.");
+            }
+        } else {
+            System.out.println("No student selected.");
+        }
     }
 }
