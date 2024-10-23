@@ -21,22 +21,20 @@ public class DBUtils {
         return email != null && email.matches(emailRegex) && email.endsWith("@gmail.com");
     }
 
-    public static void changeScene(ActionEvent event,String FXMLFile,String username) {
+    public static void changeScene(ActionEvent event, String FXMLFile, String username) {
         Parent root = null;
 
-        if(username!=null){
-            try{
+        if (username != null) {
+            try {
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(FXMLFile));
-                root =loader.load();
-            }
-            catch (IOException e){
+                root = loader.load();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
-            try{
-                root=FXMLLoader.load(DBUtils.class.getResource(FXMLFile));
-            }
-            catch (IOException e){
+        } else {
+            try {
+                root = FXMLLoader.load(DBUtils.class.getResource(FXMLFile));
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -44,79 +42,75 @@ public class DBUtils {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void SignUpUser(ActionEvent event,User user) {
-        Connection connection=null;
-        PreparedStatement psInsert=null;
-        ResultSet resultSet=null;
-        PreparedStatement psCheckUserExists=null;
 
-        try{
+    public void SignUpUser(ActionEvent event, User user) {
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        ResultSet resultSet = null;
+        PreparedStatement psCheckUserExists = null;
+
+        try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             psCheckUserExists = connection.prepareStatement("select * from user_table where email=? ");
-            psCheckUserExists.setString(1,user.getEmail());
-            resultSet=psCheckUserExists.executeQuery();
-            if (resultSet.isBeforeFirst()){
+            psCheckUserExists.setString(1, user.getEmail());
+            resultSet = psCheckUserExists.executeQuery();
+            if (resultSet.isBeforeFirst()) {
                 System.out.println("Username already exists");
                 showAlert(Alert.AlertType.ERROR, "Error", "Email already exists.");
-            }
-            else{
+            } else {
 
                 String hashedPassword = Encryptor.encryptString(user.getPassword());
 
                 if (Encryptor.checkPassword(user.getPassword(), hashedPassword)) {
-                    psInsert= connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
-                    psInsert.setString(1,user.getName());
-                    psInsert.setString(2,hashedPassword);
-                    psInsert.setString(3,user.getEmail());
+                    psInsert = connection.prepareStatement("insert into user_table(username,password,email) values(?,?,?)");
+                    psInsert.setString(1, user.getName());
+                    psInsert.setString(2, hashedPassword);
+                    psInsert.setString(3, user.getEmail());
                     psInsert.executeUpdate();
                     showAlert(Alert.AlertType.INFORMATION, "Success", "User registered successfully.");
                 }
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
-            if(resultSet!=null){
+        } finally {
+            if (resultSet != null) {
                 try {
                     resultSet.close();
-                }
-                catch (SQLException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (psCheckUserExists != null) {
-                try{
+                try {
                     psCheckUserExists.close();
-                }
-                catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (psInsert != null) {
-                try{
+                try {
                     psInsert.close();
-                }
-                catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (connection != null) {
-                try{
+                try {
                     connection.close();
-                }
-                catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
     public static void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     public void SignInUser(ActionEvent event, String email, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -147,33 +141,32 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (resultSet != null) {
-                try{
+                try {
                     resultSet.close();
-                }
-                catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (preparedStatement != null) {
-                try{
+                try {
                     preparedStatement.close();
-                }
-                catch (SQLException e){
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (connection != null) {
-                try{
+                try {
                     connection.close();
                 } catch (SQLException e) {
-                    e.printStackTrace(); ;
+                    e.printStackTrace();
+                    ;
                 }
             }
         }
     }
+
     public ObservableList<StudentData> getStudents() {
         ObservableList<StudentData> students = FXCollections.observableArrayList();
 
@@ -189,7 +182,7 @@ public class DBUtils {
                         rs.getString("name"),
                         rs.getString("surname"),
                         rs.getString("gender"),
-                        rs.getDate("dateOfBirth"),
+                        rs.getDate("dateOfBirth").toLocalDate(),
                         rs.getString("course"),
                         rs.getString("country"),
                         rs.getString("status"),
@@ -204,17 +197,57 @@ public class DBUtils {
 
         return students;
     }
+
     public Boolean deleteSelectedStudent(int student_id) {
-        String query ="DELETE FROM student where student_id = ?";
+        String query = "DELETE FROM student where student_id = ?";
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
-             PreparedStatement preparedStatement = conn.prepareStatement(query)){
-            preparedStatement.setInt(1,student_id);
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setInt(1, student_id);
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
 
     }
+    public void AddStudent(ActionEvent event, StudentData student) {
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+            psInsert = connection.prepareStatement("INSERT INTO student (number, name, surname, gender, dateOfBirth, course, country, status, student_id) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?)");
+
+            psInsert.setInt(1, student.getNumber()); // Assuming you have a method to get student number
+            psInsert.setString(2, student.getName());
+            psInsert.setString(3, student.getSurname());
+            psInsert.setString(4, student.getGender());
+
+            // Convert LocalDate to java.sql.Date
+            java.sql.Date birthDate = java.sql.Date.valueOf(student.getDateOfBirth()); // Ensure this returns LocalDate
+            psInsert.setDate(5, birthDate);
+
+            psInsert.setString(6, student.getCourse());
+            psInsert.setString(7, student.getCountry());
+            psInsert.setString(8, student.getStatus());
+            psInsert.setInt(9, student.getStudentId());
+
+            int rowsAffected = psInsert.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Student added successfully.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (psInsert != null) psInsert.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
