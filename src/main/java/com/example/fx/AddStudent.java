@@ -1,10 +1,7 @@
 package com.example.fx;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 public class AddStudent {
@@ -50,8 +47,8 @@ public class AddStudent {
         java.time.LocalDate birthDate = add_student_birth_date.getValue();
 
 
-        if (firstName.isEmpty() || lastName.isEmpty() || gender == null || course == null || startedYear == null || birthDate == null) {
-            System.out.println("Please fill in all fields.");
+        if (firstName.isEmpty() || lastName.isEmpty() || gender == null || course == null || startedYear == null || birthDate == null || country.isEmpty()) {
+            DBUtils.showAlert(Alert.AlertType.ERROR,"ERROR","PLEASE FILL EVERYTHING");
             return;
         }
 
@@ -64,13 +61,15 @@ public class AddStudent {
         student.setCourse(course);
         student.setDateOfBirth(birthDate);
         student.setCountry(country);
-        student.setNumber(123);
+        student.setNumber(0);
         student.setStatus("Active");
-        student.setStudentId(1);
+        student.setStudentId();
         System.out.println("everything up to date");
 
         DBUtils dbUtils = new DBUtils();
         dbUtils.AddStudent(event, student);
+        dbUtils.showAlert(Alert.AlertType.INFORMATION, "Congratulations", "Everything is okay");
+        dbUtils.changeScene(event,"admin-view.fxml","null");
     }
 
     @FXML
