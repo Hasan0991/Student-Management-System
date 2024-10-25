@@ -1,20 +1,20 @@
 package com.example.fx;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Random;
 
 public class StudentData {
     private int studentId;
     private String name;
     private String surname;
     private String gender;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String course;
     private String country;
     private String status;
     private int number;
-
-
-    public StudentData(int number,String name, String surname, String gender, Date dateOfBirth, String course, String country, String status,int studentId) {
+    public StudentData() {}
+    public StudentData(int number, String name, String surname, String gender, LocalDate dateOfBirth, String course, String country, String status, int studentId) {
         this.number = number;
         this.name = name;
         this.surname = surname;
@@ -36,8 +36,9 @@ public class StudentData {
         return studentId;
     }
 
-    public void setStudentId(int id) {
-        this.studentId = id;
+    public void setStudentId() {
+        Random random = new Random();
+        this.studentId = random.nextInt(1000) + 1;
     }
 
     public String getName() {
@@ -64,11 +65,11 @@ public class StudentData {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
