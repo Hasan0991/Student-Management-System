@@ -248,6 +248,22 @@ public class DBUtils {
         }
 
     }
+    public boolean replace_studentData(int studentId, String course) {
+        String url = "jdbc:mysql://localhost:3306/javafx";
+        String user = "root";
+        String password = "hasan099";
+        String query = "UPDATE students SET course = ? WHERE student_id = ?";
 
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, course);
+            stmt.setInt(2, studentId);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
