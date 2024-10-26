@@ -121,6 +121,18 @@ public class AdminView {
     }
     @FXML
     public void switch_to_update(ActionEvent event) {
-        DBUtils.changeScene(event, "update-student-info.fxml", null);
+        StudentData selectedStudent = adminTableView.getSelectionModel().getSelectedItem();
+        if (selectedStudent == null) {
+            DBUtils.showAlert(Alert.AlertType.ERROR,"ERROR", "please select the student");
+        }
+        else{
+            int studentId = selectedStudent.getStudentId();
+            UpdateStudentInfo updateStudentInfo = new UpdateStudentInfo();
+            updateStudentInfo.onAction1(event,studentId);// problem is here
+            DBUtils.changeScene(event, "update-student-info.fxml", null);
+
+        }
+
     }
+
 }
