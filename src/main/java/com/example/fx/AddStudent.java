@@ -14,10 +14,10 @@ public class AddStudent {
     private DatePicker add_student_birth_date;
 
     @FXML
-    private ComboBox<String> add_student_course; // Use specific type for ComboBox
+    private ComboBox<String> add_student_course;
 
     @FXML
-    private ComboBox<String> add_student_gender; // Use specific type for ComboBox
+    private ComboBox<String> add_student_gender;
     @FXML
     private TextField add_student_country;
     @FXML
@@ -26,14 +26,14 @@ public class AddStudent {
     private TextField add_student_name_field;
 
     @FXML
-    private ComboBox<String> add_student_start_year; // Use specific type for ComboBox
+    private ComboBox<String> add_student_start_year;
 
     @FXML
     private void initialize() {
-        // Optionally populate the ComboBoxes with data (e.g., courses, genders, etc.)
-        add_student_course.getItems().addAll("Course 1", "Course 2", "Course 3");
-        add_student_gender.getItems().addAll("Male", "Female", "Other");
-        add_student_start_year.getItems().addAll("2020", "2021", "2022", "2023", "2024");
+
+        CourseUtils.populateCourseComboBox(add_student_course);
+        CourseUtils.populateStartedYear(add_student_start_year);
+        CourseUtils.populateGender(add_student_gender);
     }
 
     @FXML
