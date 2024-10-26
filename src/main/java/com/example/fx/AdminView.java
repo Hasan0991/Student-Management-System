@@ -2,6 +2,7 @@ package com.example.fx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,7 +44,7 @@ public class AdminView {
     private Button btn_add_dashboard;
 
     @FXML
-    private Button btn_add_salalry;
+    private Button btn_add_salary;
 
     @FXML
     private Button btn_add_student;
@@ -113,5 +114,13 @@ public class AdminView {
         } else {
             System.out.println("No student selected.");
         }
+    }
+    @FXML
+    public void switch_to_addUser(ActionEvent event) {
+        DBUtils.changeScene(event, "add-student .fxml", null);
+    }
+    @FXML
+    public void switch_to_update(ActionEvent event) {
+        DBUtils.changeScene(event, "update-student-info.fxml", null);
     }
 }

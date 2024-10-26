@@ -218,13 +218,12 @@ public class DBUtils {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
             psInsert = connection.prepareStatement("INSERT INTO student (number, name, surname, gender, dateOfBirth, course, country, status, student_id) VALUES (?, ?, ?, ?, ?,?, ?, ?, ?)");
 
-            psInsert.setInt(1, student.getNumber()); // Assuming you have a method to get student number
+            psInsert.setInt(1, student.getNumber());
             psInsert.setString(2, student.getName());
             psInsert.setString(3, student.getSurname());
             psInsert.setString(4, student.getGender());
 
-            // Convert LocalDate to java.sql.Date
-            java.sql.Date birthDate = java.sql.Date.valueOf(student.getDateOfBirth()); // Ensure this returns LocalDate
+            java.sql.Date birthDate = java.sql.Date.valueOf(student.getDateOfBirth());
             psInsert.setDate(5, birthDate);
 
             psInsert.setString(6, student.getCourse());
@@ -247,6 +246,7 @@ public class DBUtils {
                 e.printStackTrace();
             }
         }
+
     }
 
 

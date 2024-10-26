@@ -8,7 +8,8 @@ public class AddStudent {
 
     @FXML
     private Button add_new_student_button;
-
+    @FXML
+    private Button add_student_back_button;
     @FXML
     private DatePicker add_student_birth_date;
 
@@ -75,5 +76,8 @@ public class AddStudent {
     @FXML
     public void addNewStudentButtonClicked(ActionEvent event) {
         handleAddStudent(event);
+    }
+    public void back_to_admin(ActionEvent event) {
+        DBUtils.changeScene(event,"admin-view.fxml","admin");
     }
 }

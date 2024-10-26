@@ -22,7 +22,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btn_add_student" alignment="CENTER" layoutX="6.0" layoutY="277.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD STUDENT" textFill="WHITE">
+            <Button fx:id="btn_add_student" alignment="CENTER" layoutX="6.0"  onAction="#switch_to_addUser" layoutY="277.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ADD STUDENT" textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btn_add_salalry" alignment="CENTER" layoutX="7.0" layoutY="513.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="SALARY " textFill="WHITE">
+            <Button fx:id="btn_add_salary" alignment="CENTER" layoutX="7.0" layoutY="513.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="SALARY " textFill="WHITE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
@@ -65,8 +65,7 @@
                   <TableColumn fx:id="admin_student_id" prefWidth="94.0" text="student_id" />
               </columns>
             </TableView>
-            <Button fx:id="btn_add" layoutX="545.0" layoutY="469.0" mnemonicParsing="false" text="ADD" />
-            <Button fx:id="btn_update" layoutX="608.0" layoutY="469.0" mnemonicParsing="false" text="UPDATE" />
+            <Button fx:id="btn_update" onAction="#switch_to_update" layoutX="608.0" layoutY="469.0" mnemonicParsing="false" text="UPDATE" />
             <Button fx:id="btn_delete" layoutX="714.0" layoutY="469.0" mnemonicParsing="false" text="DELETE" />
          </children>
       </AnchorPane>

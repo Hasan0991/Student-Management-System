@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="542.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.AddStudent">
    <children>
       <Label layoutX="15.0" layoutY="242.0" prefHeight="17.0" prefWidth="101.0" text="Birth_Date:">
@@ -37,7 +36,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="add_student_last_name_field" layoutX="111.0" layoutY="149.0" promptText="Enter last_name">
+      <TextField fx:id="add_student_country" layoutX="58.0" layoutY="375.0" promptText="Enrtry country">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
@@ -56,7 +55,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="add_new_student_button" layoutX="130.0" layoutY="440.0" mnemonicParsing="false" text="ADD">
+      <Button fx:id="add_new_student_button" layoutX="130.0" layoutY="440.0" mnemonicParsing="false" onAction="#addNewStudentButtonClicked" text="ADD">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
@@ -66,5 +65,11 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="add_student_last_name" layoutX="111.0" layoutY="149.0" promptText="Enter name ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="add_student_back_btn" onAction="#back_to_admin" layoutX="18.0" layoutY="468.0" mnemonicParsing="false" text="back" />
    </children>
 </AnchorPane>
