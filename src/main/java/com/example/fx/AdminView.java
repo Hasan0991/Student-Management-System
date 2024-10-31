@@ -4,9 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class AdminView {
@@ -123,16 +129,27 @@ public class AdminView {
     public void switch_to_update(ActionEvent event) {
         StudentData selectedStudent = adminTableView.getSelectionModel().getSelectedItem();
         if (selectedStudent == null) {
-            DBUtils.showAlert(Alert.AlertType.ERROR,"ERROR", "please select the student");
-        }
-        else{
+            DBUtils.showAlert(Alert.AlertType.ERROR, "ERROR", "Please select a student");
+        } else {
             int studentId = selectedStudent.getStudentId();
-            UpdateStudentInfo updateStudentInfo = new UpdateStudentInfo();
-            updateStudentInfo.onAction1(event,studentId);// problem is here
-            DBUtils.changeScene(event, "update-student-info.fxml", null);
 
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("update-student-info.fxml"));
+                Parent root = loader.load();
+
+
+                UpdateStudentInfo updateStudentInfoController = loader.getController();
+                updateStudentInfoController.initializeStudentId(studentId);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                DBUtils.showAlert(Alert.AlertType.ERROR, "ERROR", "Failed to load the update-student-info.fxml file.");
+            }
         }
-
     }
+
 
 }
