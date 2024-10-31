@@ -252,7 +252,7 @@ public class DBUtils {
         String url = "jdbc:mysql://localhost:3306/javafx";
         String user = "root";
         String password = "hasan099";
-        String query = "UPDATE students SET course = ? WHERE student_id = ?";
+        String query = "UPDATE student SET course = ? WHERE student_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
