@@ -43,6 +43,7 @@ public class DBUtils {
         stage.show();
     }
 
+
     public void SignUpUser(ActionEvent event, User user) {
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -161,7 +162,6 @@ public class DBUtils {
                     connection.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    ;
                 }
             }
         }
@@ -196,6 +196,27 @@ public class DBUtils {
         }
 
         return students;
+    }
+    public ObservableList<Course> getCourses() {
+        ObservableList<Course> courses = FXCollections.observableArrayList();
+        String query = "SELECT course_id,course_name FROM course";
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery()){
+
+
+            while (rs.next()) {
+                courses.add(new Course(
+                        rs.getInt("course_id"),
+                        rs.getString("course_name")
+                ));
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return courses;
     }
 
     public Boolean deleteSelectedStudent(int student_id) {
