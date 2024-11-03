@@ -286,5 +286,20 @@ public class DBUtils {
             return false;
         }
     }
+    public void insertSubject(int course_id,String subject_name,int etc_points){
+        String query = "INSERT INTO subjects(course_id,subject_name,etc_points) VALUES(?,?,?)";
+        try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+            PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1,course_id);
+            stmt.setString(2,subject_name);
+            stmt.setInt(3,etc_points);
+            stmt.executeUpdate();
+
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Subject added successfully.");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
