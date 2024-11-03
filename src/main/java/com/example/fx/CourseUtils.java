@@ -33,4 +33,5 @@ public class CourseUtils {
         comboBox.getItems().clear();
         comboBox.getItems().addAll("2021", "2022", "2023", "2024");
     }
+
 }

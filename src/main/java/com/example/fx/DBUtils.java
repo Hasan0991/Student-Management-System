@@ -301,5 +301,24 @@ public class DBUtils {
             e.printStackTrace();
         }
     }
+    public ObservableList<Subject> getSubjects(int course_id) {
+        String query  = "SELECT * FROM subjects WHERE course_id = ?";
+        ObservableList<Subject> subjects = FXCollections.observableArrayList();
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx", "root", "hasan099");
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1,course_id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String subjectName = rs.getString("subject_name");
+                int etcPoints = rs.getInt("etc_points");
+                subjects.add(new Subject(subjectName,etcPoints));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return subjects;
+    }
 
 }
