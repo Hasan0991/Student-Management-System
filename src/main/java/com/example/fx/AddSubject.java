@@ -49,11 +49,10 @@ public class AddSubject {
         if (selectedCourse != null && !subjectName.isEmpty()) {
             DBUtils dbUtils = new DBUtils();
             dbUtils.insertSubject(selectedCourse.getCourseId(), subjectName, etcPoints);
+            ObservableList<Subject> subjects = dbUtils.getSubjects(selectedCourse.getCourseId());
+
         } else {
             DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "Please select a course and enter subject details.");
         }
-
     }
-
-
 }
