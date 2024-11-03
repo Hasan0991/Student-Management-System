@@ -50,7 +50,9 @@ public class AddSubject {
             DBUtils dbUtils = new DBUtils();
             dbUtils.insertSubject(selectedCourse.getCourseId(), subjectName, etcPoints);
             ObservableList<Subject> subjects = dbUtils.getSubjects(selectedCourse.getCourseId());
-
+            for(Subject subject :subjects){
+                System.out.println("Subject Name: " + subject.getSubjectName() + ", ETC Points: " + subject.getEtc_points());
+            }
         } else {
             DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "Please select a course and enter subject details.");
         }
