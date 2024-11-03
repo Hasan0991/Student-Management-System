@@ -3,10 +3,7 @@ package com.example.fx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.Connection;
@@ -43,6 +40,19 @@ public class AddSubject {
         DBUtils dbUtils = new DBUtils();
         ObservableList<Course> courses = dbUtils.getCourses();
         course_table.setItems(courses);
+    }
+    @FXML
+    private void add_subject() {
+        Course selectedCourse = course_table.getSelectionModel().getSelectedItem();
+        String subjectName = name_subject_text_field.getText().trim();
+        int etcPoints = Integer.parseInt(etc_point_text_field.getText().trim());
+        if (selectedCourse != null && !subjectName.isEmpty()) {
+            DBUtils dbUtils = new DBUtils();
+            dbUtils.insertSubject(selectedCourse.getCourseId(), subjectName, etcPoints);
+        } else {
+            DBUtils.showAlert(Alert.AlertType.ERROR, "Error", "Please select a course and enter subject details.");
+        }
+
     }
 
 
